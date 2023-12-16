@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.sanitizeData = exports.isValidImage = exports.isValidDate = exports.isBoolean = exports.stripHTML = exports.isOverDaysOld = exports.isOfAge = exports.isValidAlphaNum = exports.isValidString = exports.isValidPhone = exports.isValidName = exports.isValidUserName = exports.isValidEmail = void 0;
+exports.sanitizeData = exports.isValidImage = exports.isValidDate = exports.isBoolean = exports.stripHTML = exports.isOverDaysOld = exports.isNotEmpty = exports.isNumbersOnly = exports.isOfAge = exports.isValidAlphaNum = exports.isValidString = exports.isValidPhone = exports.isValidName = exports.isValidUserName = exports.isValidEmail = void 0;
 const emailRegex = /^[a-z]+(_|\.)?[a-z0-9]*@[a-z]+\.[a-z]{2,}$/i;
 const userNameRegex = /^[a-z0-9_]+$/;
 const nameRegex = /^[a-z-]+$/i;
@@ -8,6 +8,7 @@ const phoneRegex = /^[0-9-+]+$/i;
 const validStringRegex = /([^\s])/;
 const alphaNumRegex = /^[a-z0-9]+$/i;
 const htmlRegex = /<\/?[^>]+(>|$)/gi;
+const numOnlyRegex = /^[0-9]+$/i;
 /**
  * @description Checks if input email is valid
  * @method function
@@ -40,6 +41,10 @@ const isOfAge = (dateOfBirth, requiredAge) => {
     return false;
 };
 exports.isOfAge = isOfAge;
+const isNumbersOnly = (numLike) => (numLike ? numOnlyRegex.test(numLike) : false);
+exports.isNumbersOnly = isNumbersOnly;
+const isNotEmpty = (stringLike) => validStringRegex.test(stringLike);
+exports.isNotEmpty = isNotEmpty;
 const isOverDaysOld = (date, days) => {
     if (!date)
         return false;

@@ -57,7 +57,7 @@ Object.keys(StatusTypes).forEach(status => {
     success = true,
     error = null,
     errMessage = null,
-    fix = httpStatus[status].statusCode < 300 ? 'please contact support' : null,
+    fix = httpStatus[status].statusCode < 300 ? null : 'please contact support',
     newAccessToken = null
   }) => {
     return new ServiceResponse(
