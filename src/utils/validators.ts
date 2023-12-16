@@ -5,6 +5,7 @@ const phoneRegex = /^[0-9-+]+$/i;
 const validStringRegex = /([^\s])/;
 const alphaNumRegex = /^[a-z0-9]+$/i;
 const htmlRegex = /<\/?[^>]+(>|$)/gi;
+const numOnlyRegex = /^[0-9]+$/i;
 
 /**
  * @description Checks if input email is valid
@@ -30,6 +31,10 @@ export const isOfAge = (dateOfBirth: string, requiredAge: number) => {
   }
   return false;
 };
+
+export const isNumbersOnly = (numLike: string) => (numLike ? numOnlyRegex.test(numLike) : false);
+
+export const isNotEmpty = (stringLike: string) => validStringRegex.test(stringLike);
 
 export const isOverDaysOld = (date: string, days: number) => {
   if (!date) return false;
