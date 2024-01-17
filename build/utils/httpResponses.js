@@ -35,7 +35,7 @@ exports.httpStatus = httpStatus;
 let httpResponses = {};
 exports.httpResponses = httpResponses;
 Object.keys(StatusTypes).forEach(status => {
-    httpResponses[status] = ({ message = httpStatus[status].message, data = {}, success = true, error = null, errMessage = null, fix = httpStatus[status].statusCode < 300 ? null : 'please contact support', newAccessToken = null }) => {
+    httpResponses[status] = ({ message = httpStatus[status].message, data = {}, success = true, error = httpStatus[status].statusCode < 300 ? null : httpStatus[status].message, errMessage = httpStatus[status].statusCode < 300 ? null : status, fix = httpStatus[status].statusCode < 300 ? null : 'please contact support', newAccessToken = null }) => {
         return new ServiceResponse_1.ServiceResponse(message, data, success, httpStatus[status].statusCode, error, errMessage, fix, newAccessToken);
     };
 });
